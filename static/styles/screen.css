@@ -1,0 +1,99 @@
+body {
+    background:#e1e1e1;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#content {
+    width:500px;
+    margin:0 auto;
+    padding:20px;
+}
+
+h1 {
+    line-height:1em;
+}
+
+#main {
+}
+
+/* TODOs 
+----------------------------------------------------------------------------- */
+#todo-list {
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+.todo-item {
+    display:block;
+    position:relative;
+    border:1px solid #B8BBC2;
+    width:100%;
+    -webkit-border-radius:3px;
+    -mox-border-radius:3px;
+    border-radius:3px;
+    background:rgb(255,255,255);
+    background:-moz-linear-gradient(top,  rgb(255,255,255) 0%, rgb(245,245,245) 100%);
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(255,255,255)), color-stop(100%,rgb(245,245,245)));
+    background:linear-gradient(to bottom,  rgb(255,255,255) 0%,rgb(245,245,245) 100%);
+    font-size:.875em;
+    margin-top:-1px;
+    height:2em;
+}
+.complete .todo-item {
+    background:rgb(175,177,181);
+    background:-moz-linear-gradient(top,  rgb(175,177,181) 0%, rgb(210,212,217) 5%);
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(175,177,181)), color-stop(10%,rgba(210,212,217,0.3)));
+    background:linear-gradient(to bottom,  rgb(175,177,181) 0%,rgb(210,212,217) 5%);
+}
+.todo-item input[type="text"],
+.todo-item label {
+    display:inline-block;
+    border:none;
+    padding:4px 10px;
+    background:transparent;
+    width:420px;
+}
+.complete label {
+    text-decoration:line-through;
+    color:#999;
+} 
+.todo-item input[type="checkbox"] {
+}
+.todo-item button {
+    border:none;
+    background:none;
+    font-weight:800;
+    width:20px;
+    display:none;
+    font-size:.857142857em;
+    padding:0;
+    margin:0;
+    line-height:1em;
+}
+.todo-item:hover button {
+    display:inline-block;
+} 
+.todo-item .view,
+.todo-item .edit {
+    position:absolute;
+    top:0;
+    left:0;
+    margin-left:12px;
+}
+.todo-item .edit {
+    display:none;
+}
+#new-todo,
+.todo-item .edit input[type="text"] {
+    margin-left:0;
+    width:476px;
+}
+.editing .view {
+    display:none;
+}
+.editing .edit {
+    padding-left:0;
+    padding-right:0;
+    margin-left:2px;
+    display:block;
+}

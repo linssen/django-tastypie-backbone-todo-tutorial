@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section id="todo-app">
+    <header id="header">
+        <h1>My todo list</h1>
+        <div class="todo-item">
+            <input id="new-todo" type="text" placeholder="New todo" autofocus>
+        </div>
+    </header>
+    <section id="main">
+        <ul id="todo-list">
+            <li>
+                <div class="todo-item">
+                    <div class="view">
+                        <input class="done-toggle" type="checkbox">
+                        <label for="id-item-cid">My todo item</label>
+                        <button class="destroy">X</button>
+                    </div>
+                    <div class="edit">
+                        <input class="edit" type="text" value="My todo item">
+                    </div>
+                </div>
+            </li>
+            <li class="editing">
+                <div class="todo-item">
+                    <div class="view">
+                        <input class="done-toggle" type="checkbox">
+                        <label for="id-item-cid">My todo item</label>
+                        <button class="destroy">X</button>
+                    </div>
+                    <div class="edit">
+                        <input class="edit" type="text" value="My todo item">
+                    </div>
+                </div>
+            </li>
+            <li class="complete">
+                <div class="todo-item">
+                    <div class="view">
+                        <input class="done-toggle" checked type="checkbox">
+                        <label for="id-item-cid">My todo item</label>
+                        <button class="destroy">X</button>
+                    </div>
+                    <div class="edit">
+                        <input class="edit" type="text" value="My todo item">
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </section>
+</section>
+
+{% endblock %}
