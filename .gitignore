@@ -1,0 +1,11 @@
+!.gitignore
+
+.sass-cache
+*.pyc
+*.swp
+
+local_settings.py
+
+/media
+/static_collected
+/api_backbone.db
