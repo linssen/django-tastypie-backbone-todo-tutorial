@@ -11,42 +11,18 @@
     </header>
     <section id="main">
         <ul id="todo-list">
-            <li>
+            <script id="item-template" type="text/template">
                 <div class="todo-item">
                     <div class="view">
                         <input class="done-toggle" type="checkbox">
-                        <label for="id-item-cid">My todo item</label>
+                        <label for="id-item-<%= id %>"><%= title %></label>
                         <button class="destroy">X</button>
                     </div>
                     <div class="edit">
                         <input class="edit" type="text" value="My todo item">
                     </div>
                 </div>
-            </li>
-            <li class="editing">
-                <div class="todo-item">
-                    <div class="view">
-                        <input class="done-toggle" type="checkbox">
-                        <label for="id-item-cid">My todo item</label>
-                        <button class="destroy">X</button>
-                    </div>
-                    <div class="edit">
-                        <input class="edit" type="text" value="My todo item">
-                    </div>
-                </div>
-            </li>
-            <li class="complete">
-                <div class="todo-item">
-                    <div class="view">
-                        <input class="done-toggle" checked type="checkbox">
-                        <label for="id-item-cid">My todo item</label>
-                        <button class="destroy">X</button>
-                    </div>
-                    <div class="edit">
-                        <input class="edit" type="text" value="My todo item">
-                    </div>
-                </div>
-            </li>
+            </script>
         </ul>
     </section>
 </section>
