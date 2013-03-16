@@ -137,7 +137,9 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Third-party apps 'south',
     'tastypie',
+    'south',
     # Project-specific apps
+    'todo',
 )
 
 # Do not edit below this line

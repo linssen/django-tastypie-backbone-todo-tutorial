@@ -1,4 +1,5 @@
 Django==1.4.5
+South==0.7.6
 distribute==0.6.31
 django-tastypie==0.9.12
 mimeparse==0.1.3
