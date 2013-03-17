@@ -5,7 +5,7 @@ $(function() {
     // The model for our todo item mapped to the Django one.
     app.Todo = Backbone.Model.extend({
         defaults: {
-            title: '',
+            title: "",
             complete: false
         },
     });
@@ -35,13 +35,13 @@ $(function() {
 
         // Bind our events.
         events: {
-            'click .destroy': 'clear'
+            "click .destroy": "clear",
         },
 
         // Set up our listeners to model events.
         initialize: function() {
             this.listenTo(this.model, "change", this.render);
-            this.listenTo(this.model, 'destroy', this.remove);
+            this.listenTo(this.model, "destroy", this.remove);
         },
 
         render: function() {
@@ -66,7 +66,7 @@ $(function() {
             // TastyPie requires us to use a ?format=json param, so we'll
             // set that as a default.
             $.ajaxPrefilter(function(options) {
-                _.extend(options, {format: 'json'});
+                _.extend(options, {format: "json"});
             });
 
             // Bind relavent events to the todos.
