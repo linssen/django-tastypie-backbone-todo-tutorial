@@ -142,6 +142,8 @@ INSTALLED_APPS = (
     'todo',
 )
 
+TASTYPIE_ALLOW_MISSING_SLASH = True
+
 # Do not edit below this line
 try:
     from local_settings import *
