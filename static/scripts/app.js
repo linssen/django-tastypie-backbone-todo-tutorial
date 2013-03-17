@@ -43,7 +43,8 @@ $(function() {
             "click .destroy": "clear",
             "dblclick label": "edit",
             "keypress .edit input": "updateOnEnter",
-            "click .done-toggle": "toggleComplete"
+            "click .done-toggle": "toggleComplete",
+            "blur .edit input": "close"
         },
 
         // Set up our listeners to model events.
@@ -79,6 +80,15 @@ $(function() {
             if (keyCode != 13 || !title) return;
 
             this.model.save({title: title}); 
+            this.$el.removeClass("editing");
+        },
+
+        close: function() {
+            var title = this.$input.val().trim();
+
+            if (!title) return;
+
+            this.model.save({title: title});
             this.$el.removeClass("editing");
         },
 
