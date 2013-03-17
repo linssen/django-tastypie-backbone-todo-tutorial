@@ -8,6 +8,11 @@ $(function() {
             title: "",
             complete: false
         },
+
+        toggleComplete: function() {
+            // Save the model with the inverse of it's boolean complete var.
+            this.save({complete: !this.get("complete")});
+        }
     });
 
     // The collection of our todo models.
@@ -37,7 +42,8 @@ $(function() {
         events: {
             "click .destroy": "clear",
             "dblclick label": "edit",
-            "keypress .edit input": "updateOnEnter"
+            "keypress .edit input": "updateOnEnter",
+            "click .done-toggle": "toggleComplete"
         },
 
         // Set up our listeners to model events.
@@ -48,6 +54,9 @@ $(function() {
 
         render: function() {
             this.$el.html(this.template(this.model.toJSON()));
+
+            // Add the complete or not if it's false
+            this.$el.toggleClass("complete", this.model.get("complete"));
 
             // Cache the input
             this.$input = this.$(".edit input");
@@ -71,6 +80,10 @@ $(function() {
 
             this.model.save({title: title}); 
             this.$el.removeClass("editing");
+        },
+
+        toggleComplete: function() {
+            this.model.toggleComplete();
         }
     });
 
