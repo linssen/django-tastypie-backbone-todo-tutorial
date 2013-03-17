@@ -84,10 +84,12 @@ $(function() {
         close: function() {
             var title = this.$input.val().trim();
 
-            if (!title) return;
-
-            this.model.save({title: title});
-            this.$el.removeClass("editing");
+            if (!title) {
+                this.clear();
+            } else {
+                this.model.save({title: title});
+                this.$el.removeClass("editing");
+            }
         },
 
         toggleComplete: function() {
