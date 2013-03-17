@@ -74,13 +74,11 @@ $(function() {
         },
 
         updateOnEnter: function(event) {
-            var keyCode = event.keyCode || event.which,
-                title = this.$input.val().trim();
+            var keyCode = event.keyCode || event.which;
 
-            if (keyCode != 13 || !title) return;
+            if (keyCode != 13) return;
 
-            this.model.save({title: title}); 
-            this.$el.removeClass("editing");
+            this.close();
         },
 
         close: function() {
