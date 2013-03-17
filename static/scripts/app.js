@@ -48,6 +48,10 @@ $(function() {
     app.AppView = Backbone.View.extend({
         el: "#todo-app",
 
+        events: {
+            "keypress #new-todo": "createOnEnter"
+        },
+
         initialize: function() {
             // TastyPie requires us to use a ?format=json param, so we'll
             // set that as a default.
@@ -59,8 +63,25 @@ $(function() {
             this.listenTo(app.Todos, "add", this.addOne);
             this.listenTo(app.Todos, "reset", this.addAll);
 
+            // Cache some of our elements.
+            this.$input = this.$("#new-todo");
+
             // Get our todos from the API!
             app.Todos.fetch();
+        },
+
+        // Crate a new todo when the input has focus and enter key is hit.
+        createOnEnter: function(event) {
+            //if (event.keyCode !== "
+            var keyCode = event.keyCode || event.which,
+                title = this.$input.val().trim();
+            if (keyCode != 13 || !title) return;
+
+            // Create a new todo.
+            app.Todos.create({title: title, complete: false});
+
+            // Reset the input.
+            this.$input.val("");
         },
 
         // Add a single todo to the list.
