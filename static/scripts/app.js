@@ -9,6 +9,7 @@ $(function() {
             complete: false
         },
 
+        // Toggle the completedness of the item
         toggleComplete: function() {
             // Save the model with the inverse of it's boolean complete var.
             this.save({complete: !this.get("complete")});
@@ -18,11 +19,14 @@ $(function() {
     // The collection of our todo models.
     TodoList = Backbone.Collection.extend({
         model: app.Todo,
+        
+        // A catcher for the meta object TastyPie will return.
         meta: {},
 
         // Set the (relative) url to the API for the item resource.
         url: "/api/item",
 
+        // Our API will return an object with meta, then objects list.
         parse: function(response) {
             this.meta = response.meta;
             return response.objects;
@@ -49,11 +53,16 @@ $(function() {
 
         // Set up our listeners to model events.
         initialize: function() {
+            // (re)Render the view when the model changes
             this.listenTo(this.model, "change", this.render);
+
+            // Remove the view when the model is destroyed
             this.listenTo(this.model, "destroy", this.remove);
         },
 
+        // Render our view to the DOM as a new li (from tagName).
         render: function() {
+            // Render the template with our model as a JSON object.
             this.$el.html(this.template(this.model.toJSON()));
 
             // Add the complete or not if it's false
@@ -64,34 +73,44 @@ $(function() {
             return this;
         },
 
+        // Just delete the view.
         clear: function() {
             this.model.destroy();
         },
 
+        // Put the view in editing mode.
         edit: function() {
             this.$el.addClass("editing");
             this.$input.focus(); 
         },
 
+        // Update the model when we hit enter.
         updateOnEnter: function(event) {
             var keyCode = event.keyCode || event.which;
 
+            // If we haven't hit enter, then continue.
             if (keyCode != 13) return;
 
+            // Defer the updating and closing to our close method.
             this.close();
         },
 
+        // Close the editing mode and save the model.
         close: function() {
             var title = this.$input.val().trim();
 
+            // If the string is empty then clear the view (destroying the model).
             if (!title) {
                 this.clear();
+
+            // Otherwise update the model and close out of editing mode.
             } else {
                 this.model.save({title: title});
                 this.$el.removeClass("editing");
             }
         },
 
+        // Bind the event to the model's toggle function.
         toggleComplete: function() {
             this.model.toggleComplete();
         }
@@ -101,6 +120,7 @@ $(function() {
     app.AppView = Backbone.View.extend({
         el: "#todo-app",
 
+        // Bind our events.
         events: {
             "keypress #new-todo": "createOnEnter"
         },
@@ -125,9 +145,10 @@ $(function() {
 
         // Crate a new todo when the input has focus and enter key is hit.
         createOnEnter: function(event) {
-            //if (event.keyCode !== "
             var keyCode = event.keyCode || event.which,
                 title = this.$input.val().trim();
+
+            // If we haven't hit enter, then continue.
             if (keyCode != 13 || !title) return;
 
             // Create a new todo.
@@ -152,5 +173,4 @@ $(function() {
 
     // And we're off.
     new app.AppView();
-
 });
