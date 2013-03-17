@@ -36,6 +36,8 @@ $(function() {
         // Bind our events.
         events: {
             "click .destroy": "clear",
+            "dblclick label": "edit",
+            "keypress .edit input": "updateOnEnter"
         },
 
         // Set up our listeners to model events.
@@ -46,11 +48,29 @@ $(function() {
 
         render: function() {
             this.$el.html(this.template(this.model.toJSON()));
+
+            // Cache the input
+            this.$input = this.$(".edit input");
             return this;
         },
 
         clear: function() {
             this.model.destroy();
+        },
+
+        edit: function() {
+            this.$el.addClass("editing");
+            this.$input.focus(); 
+        },
+
+        updateOnEnter: function(event) {
+            var keyCode = event.keyCode || event.which,
+                title = this.$input.val().trim();
+
+            if (keyCode != 13 || !title) return;
+
+            this.model.save({title: title}); 
+            this.$el.removeClass("editing");
         }
     });
 

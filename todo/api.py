@@ -8,4 +8,4 @@ class ItemResource(ModelResource):
         queryset = Item.objects.all()
         resource_name = 'item'
         authorization = Authorization()
-        allowed_methods = ['get', 'post', 'delete']
+        allowed_methods = ['get', 'post', 'delete', 'put']
