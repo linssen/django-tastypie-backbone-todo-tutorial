@@ -9,3 +9,4 @@ class ItemResource(ModelResource):
         resource_name = 'item'
         authorization = Authorization()
         allowed_methods = ['get', 'post', 'delete', 'put']
+        always_return_data = True
