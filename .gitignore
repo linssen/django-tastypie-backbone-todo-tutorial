@@ -9,3 +9,4 @@ local_settings.py
 /media
 /static_collected
 /api_backbone.db
+/env
