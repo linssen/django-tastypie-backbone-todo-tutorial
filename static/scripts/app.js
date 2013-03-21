@@ -9,6 +9,10 @@ $(function() {
             complete: false
         },
 
+        url: function() {
+            return "/api/item/"+this.id;
+        },
+
         // Toggle the completedness of the item
         toggleComplete: function() {
             // Save the model with the inverse of it's boolean complete var.
@@ -100,7 +104,12 @@ $(function() {
 
         // Update the collection's order.
         updateOrder: function(event, ui) {
-            console.log(this.$sortable.sortable("toArray"));
+            var order = this.$sortable.sortable("toArray");
+            for(var i=0; i<order.length; i++) {
+
+                var item = app.Todos.get(order[i]);
+                item.save({order: i});
+            }
         },
 
         // Update the model when we hit enter.
