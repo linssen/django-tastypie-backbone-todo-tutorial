@@ -97,3 +97,15 @@ h1 {
     margin-left:2px;
     display:block;
 }
+.ui-sortable-helper {
+    -webkit-transform:rotate(-1deg) scale(1.03);
+    -moz-transform:rotate(-1deg) scale(1.03);
+    transform:rotate(-1deg) scale(1.05);
+    box-shadow:1px 5px 8px 0px rgba(0, 0, 0, 0.2);
+    -webkit-transition:-webkit-transform 0.05s ease-in;
+    -moz-transition:-webkit-transform 0.05s ease-in;
+    transition:-webkit-transform 0.05s ease-in;
+}
+.ui-sortable-helper > div {
+    margin-top:0;
+}
