@@ -10,10 +10,43 @@
 
         <!-- libraries -->
         <script src="../lib/jquery/jquery.js"></script>
+        <script src="../lib/underscore/underscore.js"></script>
+        <script src="../lib/backbone/backbone.js"></script>
+
+        <!-- application -->
+        <script src="../app.js"></script>
+
+        <!-- unit tests -->
+        <script src="./todos.test.js"></script>
 
     </head>
     <body>
         <div id="qunit"></div>
-        <div id="qunit-fixture"></div>
+        <div id="qunit-fixture">
+            <section id="todo-app">
+                <header id="header">
+                    <h1>My to do list</h1>
+                    <div class="todo-item">
+                        <input id="new-todo" type="text" placeholder="New to do" autofocus>
+                    </div>
+                </header>
+                <section id="main">
+                    <ul id="todo-list">
+                        <script id="item-template" type="text/template">
+                            <div class="todo-item">
+                                <div class="view">
+                                    <input class="done-toggle" type="checkbox" <%= complete ? "checked" : "" %>>
+                                    <label><%= title %></label>
+                                    <button class="destroy">X</button>
+                                </div>
+                                <div class="edit">
+                                    <input type="text" value="<%= title %>">
+                                </div>
+                            </div>
+                        </script>
+                    </ul>
+                </section>
+            </section>
+        </div>
     </body>
 </html>
