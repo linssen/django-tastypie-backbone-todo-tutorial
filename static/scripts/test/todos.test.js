@@ -1,4 +1,4 @@
-module( "Todos.Model", {
+module( "Todos", {
     setup: function() {
         var testData = {
             "id": 1, 
@@ -47,4 +47,13 @@ test("Can fetch todos from the server", function() {
 
     todo = app.Todos.get(1);
     equal(todo.get("title"), "Throw my lunch out the window.");
+});
+
+test("TodoView will render each item.", function() {
+    var $todoList = $("#todo-list");
+
+    app.Todos.fetch();
+    this.server.respond();
+
+    equal($todoList.find("li").length, 1);
 });

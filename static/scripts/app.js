@@ -42,6 +42,9 @@ $(function() {
         // Cache the template for a single model.
         template: _.template($("#item-template").html()),
 
+        // Cache the jQuery UI sortable object.
+        $sortable: {},
+
         // Bind our events.
         events: {
             "click .destroy": "clear",
@@ -62,11 +65,22 @@ $(function() {
 
         // Render our view to the DOM as a new li (from tagName).
         render: function() {
+            var _self = this;
+
+            // Give the list item an id.
+            this.$el.attr("id", this.model.get("id"));
+
             // Render the template with our model as a JSON object.
             this.$el.html(this.template(this.model.toJSON()));
 
             // Add the complete or not if it's false
             this.$el.toggleClass("complete", this.model.get("complete"));
+
+            // Set up the sortable.
+            this.$sortable = $("#todo-list").sortable({
+                items: "li",
+                stop: function(event, ui) { _self.updateOrder(event, ui); }
+            });
 
             // Cache the input
             this.$input = this.$(".edit input");
@@ -82,6 +96,11 @@ $(function() {
         edit: function() {
             this.$el.addClass("editing");
             this.$input.focus(); 
+        },
+
+        // Update the collection's order.
+        updateOrder: function(event, ui) {
+            console.log(this.$sortable.sortable("toArray"));
         },
 
         // Update the model when we hit enter.
