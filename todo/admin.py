@@ -1,4 +1,7 @@
 from django.contrib import admin
 from todo.models import Item
 
-admin.site.register(Item)
+class ItemAdmin(admin.ModelAdmin):
+    list_display = ('title', 'complete')
+
+admin.site.register(Item, ItemAdmin)
