@@ -8,12 +8,14 @@ class Item(models.Model):
     complete = models.BooleanField(default=False)
     order = models.IntegerField()
 
+    """
     def save(self, *args, **kwargs):
         super(Item, self).save(*args, **kwargs)
 
         for (order, item) in enumerate(Item.objects.order_by('order')):
             item.order = order
             super(Item, item).save(*args, **kwargs)
+    """
 
     class Meta:
         ordering = ['order']
