@@ -6,11 +6,13 @@ $(function() {
     app.Todo = Backbone.Model.extend({
         defaults: {
             title: "",
+            order: 0,
             complete: false
         },
 
         url: function() {
-            return "/api/item/"+this.id;
+            var id = this.id || '';
+            return "/api/item/"+id;
         },
 
         // Toggle the completedness of the item
